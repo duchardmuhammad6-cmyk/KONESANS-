@@ -37,7 +37,7 @@ label{display:block;font-weight:700;margin:10px 0 4px;color:#fff}input,select{wi
 </style></head><body><main>
 
 <section id="auth" class="screen on">
-<span class="demo">DEMO — pa gen kont reyèl</span>
+
 <h1>KONESANS<span>AK REKONPANS</span></h1>
 <h2>Kreye kont ou</h2>
 <label for="aN">Non konplè</label><input id="aN" autocomplete="name">
@@ -47,8 +47,17 @@ label{display:block;font-weight:700;margin:10px 0 4px;color:#fff}input,select{wi
 <label for="aC">Konfime modpas</label><input id="aC" type="password" autocomplete="new-password">
 <div class="err" id="aE"></div>
 <button class="btn c main" style="margin-top:14px;min-height:66px;font-size:21px" onclick="reg()">KREYE KONT</button>
-<button class="btn c" onclick="go('home')">Mwen gen yon kont — ANTRE (DEMO)</button>
-<p class="note">Demo sa a pa sere okenn modpas ni enfòmasyon. Nan vèsyon reyèl la, Supabase Auth ap chifre modpas yo epi verifye nimewo a pa SMS.</p>
+<button class="btn c" onclick="go('login')">Mwen gen yon kont — ANTRE</button>
+<p class="note">Modpas ou chifre pa Supabase Auth; jwèt la pa janm wè l. Verifikasyon nimewo pa SMS ap vini pita.</p>
+</section>
+
+<section id="login" class="screen">
+<button class="back" onclick="go('auth')">← Retounen</button>
+<h2>Antre nan kont ou</h2>
+<label for="lM">Imèl</label><input id="lM" type="email" autocomplete="email">
+<label for="lP">Modpas</label><input id="lP" type="password" autocomplete="current-password">
+<div class="err" id="lE"></div>
+<button class="btn c main" style="margin-top:14px;min-height:66px;font-size:21px" onclick="login()">ANTRE</button>
 </section>
 
 <section id="home" class="screen">
@@ -109,7 +118,7 @@ label{display:block;font-weight:700;margin:10px 0 4px;color:#fff}input,select{wi
 
 <section id="kite" class="screen">
 <h2>Ou vle kite jwèt la?</h2><p class="slogan">Ou ka retounen nan paj koneksyon an.</p>
-<button class="btn c" onclick="alert('Nan vèsyon reyèl la, sa ap voye ou nan paj koneksyon an.');go('home')">WI, KITE</button>
+<button class="btn c" onclick="out()">WI, KITE</button>
 <button class="btn c" onclick="go('home')">NON, RETOUNEN</button>
 </section>
 </main>
@@ -244,6 +253,23 @@ function reg(){var e="",p=$("aT").value.replace(/[\s-]/g,"").replace(/^\+?509/,"
 if($("aN").value.trim().length<3)e="Antre non konplè ou.";else if(!/^[34]\d{7}$/.test(p))e="Nimewo telefòn nan dwe gen 8 chif (egz: 3412 3456).";
 else if(!/^\S+@\S+\.\S+$/.test($("aM").value))e="Imèl la pa bon.";else if($("aP").value.length<8)e="Modpas la dwe gen omwen 8 karaktè.";else if($("aP").value!==$("aC").value)e="De modpas yo pa menm.";
 if(e){$("aE").textContent=e;$("aE").style.display="block";return}
-alert("Fòm lan bon. Nan demo a, anyen pa sere. Kont reyèl la ap vini ak Supabase.");go("home")}
+sbSignup($("aN").value.trim(),p,$("aM").value.trim(),$("aP").value)}
+var SB="https://nbnfhmcggzutoejhkpmv.supabase.co",KEY="sb_publishable_gXsgsm-HoIJKlfUoeeFFPg_7RaQSEUJ",busy=false;
+function sbCall(path,body){return fetch(SB+path,{method:"POST",headers:{"apikey":KEY,"Content-Type":"application/json"},body:JSON.stringify(body)}).then(function(r){return r.json().then(function(j){return{ok:r.ok,j:j}})})}
+function showErr(id,m){$(id).textContent=m;$(id).style.display="block"}
+function msg(j){var t=((j&&(j.msg||j.error_description||j.message))||"").toLowerCase();
+if(t.indexOf("already")>-1)return"Imèl sa a deja gen yon kont.";if(t.indexOf("database")>-1)return"Imèl oswa nimewo sa a deja itilize.";
+if(t.indexOf("invalid login")>-1)return"Imèl oswa modpas pa bon.";if(t.indexOf("not confirmed")>-1)return"Konfime imèl ou dabò (gade bwat imèl ou).";
+if(t.indexOf("rate")>-1)return"Twòp eseye. Tann yon ti moman.";return"Erè. Eseye ankò."}
+function sbSignup(n,p,m,pw){if(busy)return;busy=true;$("aE").style.display="none";
+sbCall("/auth/v1/signup",{email:m,password:pw,data:{full_name:n,phone:p}}).then(function(r){busy=false;
+if(!r.ok){showErr("aE",msg(r.j));return}
+if(r.j.access_token){go("home")}else{alert("Kont lan kreye. Gade imèl ou pou konfime l, epi antre.");go("login")}})
+.catch(function(){busy=false;showErr("aE","Pa ka kontakte sèvè a. Tcheke entènèt ou.")})}
+function login(){if(busy)return;busy=true;$("lE").style.display="none";
+sbCall("/auth/v1/token?grant_type=password",{email:$("lM").value.trim(),password:$("lP").value}).then(function(r){busy=false;
+if(!r.ok){showErr("lE",msg(r.j));return}go("home")})
+.catch(function(){busy=false;showErr("lE","Pa ka kontakte sèvè a. Tcheke entènèt ou.")})}
+function out(){$("lP").value="";go("auth")}
 sel();$("nivoNow").textContent=N[niv];
 </script></body></html>
