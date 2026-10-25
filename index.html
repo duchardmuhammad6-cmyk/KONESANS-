@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ht"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KONESANS AK REKONPANS</title>
+<style>
+:root{color-scheme:dark;--blue:#00209f;--red:#d21034;--ink:#0b1b4d;--mut:#4a5780;--gold:#ffc83d;--ok:#1a9d5c;--bad:#c4122f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:"Trebuchet MS","Segoe UI",Roboto,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--blue) 50%,var(--red) 50%) fixed}
+main{max-width:480px;margin:0 auto;padding:22px 16px 40px}
+.screen{display:none}.screen.on{display:block}
+h1{font-family:Georgia,serif;font-size:clamp(32px,10.5vw,48px);line-height:1.03;margin:8px 0 10px;color:#fff;text-shadow:0 2px 8px #0006}
+h1 span{display:block;color:var(--gold)}
+h2{font-family:Georgia,serif;font-size:27px;margin:4px 0 12px;color:#fff;text-shadow:0 2px 8px #0006}
+.slogan{color:#fff;font-size:17px;line-height:1.45;margin:0 0 22px;max-width:30ch;text-shadow:0 1px 6px #0007}
+.demo{display:inline-block;background:var(--gold);color:#1b1500;font-weight:700;font-size:12px;padding:4px 10px;border-radius:99px}
+.btn{display:flex;align-items:center;gap:14px;width:100%;min-height:66px;padding:12px 18px;margin:0 0 12px;border:0;border-radius:18px;background:#fffffff2;color:var(--ink);font:inherit;font-size:20px;font-weight:700;text-align:left;cursor:pointer;box-shadow:0 4px 14px #0003;transition:transform .12s}
+.btn:active{transform:scale(.97)}.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.btn small{display:block;font-weight:400;font-size:13px;color:var(--mut);margin-top:2px}.btn .ic{font-size:30px;width:40px;text-align:center}
+.btn.main{background:var(--gold);font-size:27px;min-height:88px}
+.btn.c{justify-content:center;text-align:center}.btn.dis{opacity:.5}
+.back{background:#fffffff2;border:0;border-radius:99px;color:var(--ink);font:inherit;font-size:15px;padding:8px 16px;margin-bottom:12px;cursor:pointer}
+.card{background:#fffffff5;border-radius:18px;padding:16px;margin:0 0 12px;box-shadow:0 4px 14px #0003}
+.card h3{margin:0 0 4px;font-size:19px}.card p{margin:0 0 12px;color:var(--mut);font-size:15px;line-height:1.4}.card .btn{margin:0;box-shadow:none;border:2px solid var(--blue);min-height:52px;font-size:17px;justify-content:center}
+.card.sel{outline:4px solid var(--gold)}
+.top{display:flex;justify-content:space-between;color:#fff;font-weight:700;margin-bottom:10px;text-shadow:0 1px 4px #0006}
+.bar{height:8px;background:#ffffff55;border-radius:9px;overflow:hidden;margin-bottom:14px}.bar i{display:block;height:100%;width:100%;background:var(--gold);transition:width 1s linear}
+.cat{font-size:13px;color:var(--mut);margin-bottom:6px}.q{font-size:21px;font-weight:700;line-height:1.3;margin:0}
+.opt{min-height:58px;font-size:18px}.opt.ok{background:#d7f5e5;border:2px solid var(--ok)}.opt.no{background:#fde0e5;border:2px solid var(--bad)}
+.exp{font-size:15px;line-height:1.4;margin:0 0 12px}
+.big{font-family:Georgia,serif;font-size:44px;font-weight:700;color:var(--blue);margin:2px 0}
+.row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #0b1b4d22;font-size:16px}.row:last-child{border:0}
+.msg{padding:12px 14px;border-radius:14px;background:#fff3cf;border:2px solid var(--gold);font-size:15px;line-height:1.4;margin:0 0 12px;font-weight:700}
+label{display:block;font-weight:700;margin:10px 0 4px;color:#fff}input,select{width:100%;min-height:52px;border-radius:14px;border:0;padding:0 14px;font:inherit;font-size:18px;color:var(--ink);background:#fff}
+.err{color:#fff;background:var(--bad);border-radius:12px;padding:10px 12px;margin:10px 0;display:none}
+.note{color:#fff;font-size:13px;line-height:1.4;text-shadow:0 1px 4px #0007}
+@media (prefers-reduced-motion:reduce){.btn,.bar i{transition:none}}
+</style></head><body><main>
+
+<section id="auth" class="screen on">
+<span class="demo">DEMO — pa gen kont reyèl</span>
+<h1>KONESANS<span>AK REKONPANS</span></h1>
+<h2>Kreye kont ou</h2>
+<label for="aN">Non konplè</label><input id="aN" autocomplete="name">
+<label for="aT">Nimewo telefòn</label><input id="aT" type="tel" inputmode="tel" placeholder="3412 3456">
+<label for="aM">Imèl</label><input id="aM" type="email" autocomplete="email">
+<label for="aP">Modpas (8 karaktè omwen)</label><input id="aP" type="password" autocomplete="new-password">
+<label for="aC">Konfime modpas</label><input id="aC" type="password" autocomplete="new-password">
+<div class="err" id="aE"></div>
+<button class="btn c main" style="margin-top:14px;min-height:66px;font-size:21px" onclick="reg()">KREYE KONT</button>
+<button class="btn c" onclick="go('home')">Mwen gen yon kont — ANTRE (DEMO)</button>
+<p class="note">Demo sa a pa sere okenn modpas ni enfòmasyon. Nan vèsyon reyèl la, Supabase Auth ap chifre modpas yo epi verifye nimewo a pa SMS.</p>
+</section>
+
+<section id="home" class="screen">
+<span class="demo">VÈSYON DEMO — pa gen lajan reyèl</span>
+<h1>KONESANS<span>AK REKONPANS</span></h1>
+<p class="slogan">Aprann plis, teste konesans ou, jwenn rekonpans!</p>
+<button class="btn main" onclick="start()"><span class="ic">▶️</span><span>JWE<small>Kòmanse yon pati</small></span></button>
+<button class="btn" onclick="go('nivo')"><span class="ic">🎯</span><span>NIVO<small id="nivoNow"></small></span></button>
+<button class="btn" onclick="wal()"><span class="ic">💰</span><span>KANTITE LAJAN<small>Pòtfèy ou ak retrè</small></span></button>
+<button class="btn" onclick="go('kite')"><span class="ic">🚪</span><span>KITE JWÈT LA<small>Soti oswa retounen nan koneksyon</small></span></button>
+</section>
+
+<section id="nivo" class="screen">
+<button class="back" onclick="go('home')">← Retounen</button><h2>Chwazi nivo ou</h2>
+<div class="card" id="n1"><h3>NIVO 1 — FASIL</h3><p>Kesyon senp sou konesans jeneral Ayiti.</p><button class="btn" onclick="pick(1)">Chwazi nivo sa a</button></div>
+<div class="card" id="n2"><h3>NIVO 2 — MWAYEN</h3><p>Pou moun ki konnen istwa, jewografi ak kilti ayisyen pi byen.</p><button class="btn" onclick="pick(2)">Chwazi nivo sa a</button></div>
+<div class="card" id="n3"><h3>NIVO 3 — DIFISIL</h3><p>Dat presi, evènman, pèsonalite mwens konnen ak eritaj ayisyen.</p><button class="btn" onclick="pick(3)">Chwazi nivo sa a</button></div>
+</section>
+
+<section id="game" class="screen">
+<div class="top"><span id="gN"></span><span id="gT"></span></div>
+<div class="bar"><i id="gB"></i></div>
+<div class="card"><div class="cat" id="gC"></div><p class="q" id="gQ"></p></div>
+<div id="gO"></div>
+<div class="card" id="gE" style="display:none"><p class="exp" id="gX"></p><button class="btn c" onclick="nxt()" id="gNext">Kesyon swivan</button></div>
+</section>
+
+<section id="end" class="screen">
+<h2>Pati a fini!</h2>
+<div class="card"><div style="color:var(--mut)">Rezilta ou</div><div class="big" id="eS"></div><div class="row"><span>Bon repons</span><b id="eR"></b></div><div class="row"><span>Pwen jwèt</span><b id="eP"></b></div><p id="eM" style="margin:10px 0 0"></p></div>
+<div class="card"><h3>📺 Videyo rekonpans</h3><p>Disponib sèlman nan vèsyon reyèl la, lè yon founisè piblisite ofisyèl konfime videyo a. Pwen jwèt yo pa lajan.</p></div>
+<button class="btn c main" style="min-height:66px;font-size:22px" onclick="start()">REJWE</button>
+<button class="btn c" onclick="go('home')">AKÈY</button>
+</section>
+
+<section id="lajan" class="screen">
+<button class="back" onclick="go('home')">← Retounen</button><span class="demo">DEMO — done fiktif</span>
+<h2>Kantite lajan</h2>
+<div class="card"><div style="color:var(--mut)">Lajan ki disponib pou retrè</div><div class="big" id="wB"></div>
+<div class="row"><span>Revni piblisite ki atribiye</span><b>— HTG</b></div>
+<div class="row"><span>Rekonpans ki valide</span><b>— HTG</b></div></div>
+<div class="msg" id="wM"></div>
+<button class="btn c" id="wBtn" onclick="openRet()">FÈ RETRÈ</button>
+<button class="btn c" style="min-height:48px;font-size:15px" onclick="swap()">Chanje solde demo (75 / 125 HTG)</button>
+<div class="card"><h3>Istorik tranzaksyon</h3><div id="wH"><p>Pa gen tranzaksyon ankò.</p></div></div>
+<p class="note">Nan vèsyon reyèl la, rekonpans yo kalkile pa sèvè a sèlman, selon pousantaj pataj revni piblisite reyèl la. Pa gen anyen ki voye pa MonCash oswa NatCash nan demo sa a.</p>
+</section>
+
+<section id="ret" class="screen">
+<button class="back" onclick="wal()">← Retounen</button><span class="demo">DEMO — pa gen lajan ki voye</span>
+<h2>Fè retrè</h2>
+<label for="rA">Montan pou retire (HTG)</label><input id="rA" type="number" inputmode="numeric" min="100">
+<label for="rS">Chwazi sèvis la</label><select id="rS"><option>MonCash</option><option>NatCash</option></select>
+<label for="rP">Nimewo telefòn kote pou voye lajan an</label><input id="rP" type="tel" inputmode="tel" placeholder="Egz: 3412 3456">
+<div class="err" id="rE"></div>
+<button class="btn c main" style="margin-top:14px;min-height:66px;font-size:21px" onclick="conf()">KONFIME RETRÈ</button>
+</section>
+
+<section id="kite" class="screen">
+<h2>Ou vle kite jwèt la?</h2><p class="slogan">Ou ka retounen nan paj koneksyon an.</p>
+<button class="btn c" onclick="alert('Nan vèsyon reyèl la, sa ap voye ou nan paj koneksyon an.');go('home')">WI, KITE</button>
+<button class="btn c" onclick="go('home')">NON, RETOUNEN</button>
+</section>
+</main>
+<script>
+var Q={1:[
+["Kilti jeneral","Ki koulè drapo Ayiti a genyen?",["Ble ak wouj","Vèt ak jòn","Nwa ak blan"],"Drapo Ayiti a gen ble anlè ak wouj anba."],
+["Istwa Ayiti","Ki dat Ayiti pwoklame endepandans li?",["1ye janvye 1804","18 mai 1803","7 fevriye 1986"],"Dessalines pwoklame endepandans lan nan Gonayiv, 1ye janvye 1804."],
+["Jewografi","Ki kapital peyi Ayiti?",["Pòtoprens","Okap","Miragwàn"],"Pòtoprens se kapital Ayiti."],
+["Syans","Ki gaz moun bezwen pou respire?",["Oksijèn","Idwojèn","Elyòm"],"Kò nou itilize oksijèn nan lè a pou li fonksyone."],
+["Matematik","Konbyen fè 6 × 7?",["42","36","48"],"6 fwa 7 egal 42."],
+["Kilti ak tradisyon","Ki soup ayisyen moun manje chak 1ye janvye?",["Soup joumou","Bouyon tèt kabrit","Soup pwa"],"Soup joumou se senbòl libète ak endepandans."],
+["Lang ak literati","Ki de lang ofisyèl Ayiti?",["Kreyòl ak franse","Kreyòl ak angle","Franse ak espanyòl"],"Kreyòl ak franse se lang ofisyèl peyi a."],
+["Pèsonalite istorik","Ki moun ki pwoklame endepandans Ayiti an 1804?",["Jean-Jacques Dessalines","Alexandre Pétion","Faustin Soulouque"],"Jean-Jacques Dessalines te pwoklame endepandans lan."],
+["Jewografi","Ki lavil ki pi gwo nan nò Ayiti?",["Okap","Jakmèl","Okay"],"Okap se pi gwo lavil nan nò a."],
+["Jewografi","Ki lòt peyi ki pataje menm zile a ak Ayiti?",["Dominikani","Kiba","Jamayik"],"Ayiti ak Dominikani pataje zile Ispanyola a."],
+["Jewografi","Ki non zile kote Ayiti ye a?",["Ispanyola","Kiba","Pòtoriko"],"Zile a rele Ispanyola (Hispaniola)."],
+["Syans","Ki sa plant yo bezwen pou fè fotosentèz?",["Limyè solèy","Lanèj","Sèl"],"Plant yo itilize limyè solèy, dlo ak gaz kabonik."],
+["Syans","Ki planèt ki pi pre Solèy la?",["Mèki","Venis","Latè"],"Mèki se planèt ki pi pre Solèy la."],
+["Matematik","Konbyen fè 100 − 35?",["65","75","55"],"100 mwens 35 egal 65."],
+["Matematik","Konbyen fè 9 × 9?",["81","72","90"],"9 fwa 9 egal 81."],
+["Kilti ak tradisyon","Ki gwo fèt ak defile nan lari ayisyen yo fè anvan Karèm?",["Kanaval","Nwèl","Pak"],"Kanaval se gwo fèt mizik ak kostim anvan Karèm."],
+["Kilti ak tradisyon","Ki manje ayisyen ki fèt ak vyann kochon fri?",["Griyo","Pen patat","Akra"],"Griyo se vyann kochon ki koupe an mòso epi ki fri."],
+["Lang ak literati","Lè yon moun di « Krik? », ki repons tradisyonèl la?",["Krak!","Bravo!","Wi!"],"Krik? Krak! kòmanse rakont ak devinèt tradisyonèl yo."],
+["Pèsonalite istorik","Ki moun ki konstwi Sitadèl Laferyè?",["Henri Christophe","Dessalines","Alexandre Pétion"],"Henri Christophe te konstwi Sitadèl la apre endepandans lan."],
+["Istwa Ayiti","Ki peyi ki te dirije Sen-Domeng (ansyen non koloni a) jiska 1804?",["Lafrans","Angletè","Etazini"],"Sen-Domeng te yon koloni franse jiska 1804."],
+["Jewografi","Nan ki kontinan Ayiti ye?",["Amerik","Afrik","Ewòp"],"Ayiti nan Amerik la, nan rejyon Karayib la."],
+["Jewografi","Ki lanmè ki bò kòt Ayiti?",["Lanmè Karayib la","Lanmè Wouj","Lanmè Nwa"],"Lanmè Karayib la antoure Ayiti."],
+["Syans","Ki zetwal ki bay Latè limyè ak chalè?",["Solèy la","Lalin","Venis"],"Solèy la se zetwal ki bay Latè limyè ak chalè."],
+["Syans","Ki ògàn ki ponpe san nan kò a?",["Kè","Poumon","Fwa"],"Kè a ponpe san nan tout kò a."],
+["Matematik","Konbyen fè 50 + 25?",["75","65","85"],"50 plis 25 egal 75."],
+["Matematik","Konbyen fè 100 ÷ 4?",["25","20","40"],"100 divize pa 4 egal 25."],
+["Kilti ak tradisyon","Ki fwi jòn ak dous ki gen gwo grenn epi ki abondan nan sezon ete Ayiti?",["Mango","Pòm","Rezen"],"Mango se youn nan fwi ayisyen yo pi renmen."],
+["Lang ak literati","Ki jan yo di « bonjou » an kreyòl?",["Bonjou","Orevwa","Mèsi"],"Bonjou se salitasyon nan maten ak jounen an."],
+["Istwa Ayiti","Ki premye repiblik nwa ki endepandan nan mond lan?",["Ayiti","Jamayik","Kiba"],"Ayiti te vin premye repiblik nwa ki endepandan an 1804."],
+["Kilti jeneral","Ki sa non « Ayiti » vle di nan lang tayino a?",["Tè mòn","Tè dlo","Tè solèy"],"Ayiti vle di « tè mòn yo » nan lang tayino a."]],
+2:[
+["Kilti jeneral","Ki jou Ayiti selebre Jou Drapo?",["18 mai","1ye janvye","14 out"],"Chak 18 mai Ayiti fete drapo a ak inite nasyonal."],
+["Istwa Ayiti","Ki batay ki te fini ak lame franse a an 1803?",["Vètyè","Krèt-a-Pyewo","Rav-a-Koulèv"],"Batay Vètyè, 18 novanm 1803, te louvri chemen pou endepandans lan."],
+["Jewografi","Konbyen depatman jewografik Ayiti genyen?",["10","8","12"],"Ayiti gen 10 depatman."],
+["Syans","Konbyen zo yon granmoun genyen apeprè?",["206","106","306"],"Kò yon granmoun gen apeprè 206 zo."],
+["Matematik","Konbyen se 15% de 200?",["30","20","35"],"200 × 15 ÷ 100 = 30."],
+["Kilti ak tradisyon","Ki jan yo rele mizik Nemours Jean-Baptiste te kreye a?",["Konpa","Rara","Twoubadou"],"Nemours Jean-Baptiste se fondatè konpa dirèk la, nan ane 1950 yo."],
+["Lang ak literati","Ki otè ki ekri woman Gouvènè Lawouze?",["Jacques Roumain","Jacques Stephen Alexis","Frankétienne"],"Jacques Roumain te ekri Gouvènè Lawouze (Gouverneurs de la rosée)."],
+["Pèsonalite istorik","Ki lidè revolisyon an franse yo te kaptire an 1802?",["Toussaint Louverture","Henri Christophe","Alexandre Pétion"],"Toussaint Louverture te mouri nan prizon Fort de Joux, an Frans."],
+["Istwa Ayiti","Ki seremoni istorik ki anvan soulèvman esklav yo an 1791 nan nò?",["Seremoni Bwa Kayiman","Batay Vètyè","Lwa Konvansyon"],"Seremoni Bwa Kayiman te prepare soulèvman an."],
+["Istwa Ayiti","Ki lidè ki te dirije Repiblik Sid la apre lanmò Dessalines?",["Alexandre Pétion","Henri Christophe","Jean-Pierre Boyer"],"Pétion te dirije sid la, Christophe te dirije nò a."],
+["Jewografi","Nan ki depatman vil Jakmèl ye?",["Sidès","Nò","Nip"],"Jakmèl se kapital depatman Sidès."],
+["Jewografi","Ki pi gwo zile ki fè pati Ayiti?",["Lagonav","Latòti","Lavach"],"Lagonav se pi gwo zile ayisyen an."],
+["Syans","Ki gaz ki plis lakòz rechofman klimatik?",["Gaz kabonik (CO₂)","Azòt","Oksijèn"],"CO₂ kenbe chalè nan atmosfè a."],
+["Syans","Ki vitamin kò a fabrike lè solèy frape po a?",["Vitamin D","Vitamin C","Vitamin K"],"Solèy ede po a fè vitamin D."],
+["Matematik","Konbyen fè 12 × 12?",["144","124","164"],"12 fwa 12 egal 144."],
+["Matematik","Yon triyang gen de kote 3 ak 4 ki fè yon ang dwat. Ki longè dènye kote a?",["5","6","7"],"3² + 4² = 25, rasin kare a se 5."],
+["Kilti ak tradisyon","Ki mizik ak parad ak bambou ki fèt pandan Karèm jiska Pak?",["Rara","Konpa","Twoubadou"],"Rara se tradisyon sezon Karèm lan."],
+["Kilti ak tradisyon","Ki komin ki konnen pou atizay an fè dekoupe?",["Kwadèbouke","Jeremi","Fòlibète"],"Kwadèbouke se santral atizay an fè dekoupe."],
+["Lang ak literati","Ki powèt ayisyen ki ekri « Choukoun »?",["Oswald Durand","Massillon Coicou","Georges Castera"],"Oswald Durand te ekri Choukoun."],
+["Pèsonalite istorik","Ki moun ki koud premye drapo ayisyen an?",["Katrin Flon","Sanite Bèlè","Defile"],"Katrin Flon te koud drapo a nan Akayè, 18 mai 1803."],
+["Istwa Ayiti","Ki pèp ki te rete Ayiti anvan Kristòf Kolon rive?",["Tayino","Aztèk","Maya"],"Tayino yo te premye moun ki te rete zile a."],
+["Istwa Ayiti","An ki ane Kristòf Kolon rive sou zile Ispanyola?",["1492","1503","1604"],"Kolon rive sou zile a an 1492."],
+["Istwa Ayiti","Nan ki fò Dessalines te reziste kont lame franse a an 1802?",["Krèt-a-Pyewo","Fò Dimanch","Fò Jak"],"Dessalines te defann Krèt-a-Pyewo an mas 1802."],
+["Jewografi","Nan ki depatman lavil Okap ye?",["Nò","Sid","Lwès"],"Okap se kapital depatman Nò."],
+["Jewografi","Ki baraj idwoelektrik ki sou Larivyè Latibonit?",["Peligre","Sen-Mak","Gonayiv"],"Baraj Peligre bare Larivyè Latibonit."],
+["Jewografi","Ki pasaj lanmè ki separe Ayiti ak Kiba?",["Pasaj Ventan","Kanal Panama","Detwa Jibraltar"],"Pasaj Ventan an (Windward Passage) separe Ayiti ak Kiba."],
+["Syans","Ki ògàn nan kò a ki filtre san an?",["Ren","Kè","Lang"],"Ren yo filtre san an epi yo fè pipi."],
+["Syans","Ki eleman chimik ki gen senbòl O?",["Oksijèn","Lò","Osmyòm"],"O se senbòl oksijèn."],
+["Matematik","Konbyen degre ki gen nan sòm ang yon triyang?",["180","90","360"],"Twa ang yon triyang fè 180 degre."],
+["Matematik","Konbyen se 3/4 de 80?",["60","40","70"],"80 ÷ 4 = 20, epi 20 × 3 = 60."],
+["Kilti ak tradisyon","Ki non yo bay mizik ayisyen ki melanje ritm vodou ak enstriman modèn?",["Mizik rasin","Rara","Kanaval"],"Mizik rasin pran ritm vodou ak tanbou tradisyonèl."],
+["Lang ak literati","Ki ekriven ayisyen-ameriken ki ekri Krik? Krak!?",["Edwidge Danticat","Marie Chauvet","Dany Laferrière"],"Edwidge Danticat te pibliye Krik? Krak! an 1996."],
+["Pèsonalite istorik","Ki fanm ki te ramase kò Dessalines epi antere l?",["Defile","Katrin Flon","Sanite Bèlè"],"Defile (Dédée Bazile) te antere Dessalines."],
+["Kilti jeneral","Ki sa Ayiti fete chak 18 novanm?",["Batay Vètyè ak Lame","Jou Endepandans","Jou Travay"],"18 novanm fete Batay Vètyè ak Lame ayisyen an."],
+["Istwa Ayiti","An ki ane Lafrans te abòli esklavaj la pou premye fwa?",["1794","1804","1848"],"Konvansyon an te abòli esklavaj la an 1794."]],
+3:[
+["Istwa Ayiti","An ki ane Etazini te kòmanse okipe Ayiti?",["1915","1934","1957"],"Okipasyon ameriken an te kòmanse an 1915 epi li te fini an 1934."],
+["Jewografi","Ki pi wo mòn Ayiti?",["Pik la Sèl","Mòn Lahòt","Mòn Kabrit"],"Pik la Sèl, apeprè 2 680 mèt, se pwen ki pi wo nan peyi a."],
+["Kilti ak tradisyon","Ki sit ayisyen UNESCO mete sou lis Patrimwàn Mondyal la?",["Sitadèl, Sans-Souci ak Ramye","Palè Nasyonal la","Katedral Pòtoprens"],"Sitadèl Laferyè, Palè Sans-Souci ak Ramye antre sou lis la depi 1982."],
+["Lang ak literati","An ki ane konstitisyon an te mete kreyòl kòm lang ofisyèl?",["1987","1957","2010"],"Konstitisyon 1987 la te rekonèt kreyòl ak franse kòm lang ofisyèl."],
+["Pèsonalite istorik","Ki fanm ki te lyetnan nan lame Toussaint epi yo fizye l an 1802?",["Sanite Bèlè","Defile","Katrin Flon"],"Sanite Bèlè (Sanité Bélair) te mouri pou libète an 1802."],
+["Istwa Ayiti","Ki dat yo asasinen Dessalines nan Pon Wouj?",["17 oktòb 1806","1ye janvye 1804","18 novanm 1803"],"Dessalines te mouri 17 oktòb 1806."],
+["Syans","Ki eleman chimik ki gen senbòl Fe?",["Fè","Fliyò","Fosfò"],"Fe se senbòl fè."],
+["Matematik","Konbyen fè 2 pwisans 10?",["1 024","512","2 048"],"2 miltipliye 10 fwa egal 1 024."],
+["Istwa Ayiti","An ki ane Lafrans te rekonèt endepandans Ayiti ak yon endemnite?",["1825","1804","1838"],"Wa Charles X te egzije endemnite a an 1825."],
+["Istwa Ayiti","An ki ane François Duvalier te vin prezidan?",["1957","1971","1986"],"Duvalier te pran pouvwa an 1957."],
+["Istwa Ayiti","Ki dat gwo tranblemannde a te frape Pòtoprens?",["12 janvye 2010","12 janvye 2008","14 out 2021"],"Tranblemannde 12 janvye 2010 la te touche Pòtoprens anpil."],
+["Jewografi","Ki pi long rivyè Ayiti?",["Latibonit","Gwayamouk","Twoujis"],"Latibonit se pi long rivyè peyi a."],
+["Jewografi","Ki kapital depatman Latibonit?",["Gonayiv","Sen-Mak","Dèlma"],"Gonayiv se kapital depatman Latibonit."],
+["Syans","Ki vitès limyè nan vid la, apeprè?",["300 000 km/s","30 000 km/s","3 000 km/s"],"Limyè fè apeprè 300 000 km chak segonn."],
+["Syans","Ki gaz ki pi abondan nan lè a?",["Azòt","Oksijèn","Gaz kabonik"],"Lè a gen apeprè 78% azòt."],
+["Matematik","Konbyen se rasin kare de 169?",["13","14","12"],"13 × 13 = 169."],
+["Kilti ak tradisyon","Ki atis ayisyen, prèt vodou, ki te yon gran non penti nayif?",["Hector Hyppolite","Jacques Roumain","Oswald Durand"],"Hector Hyppolite se youn nan gwo pentè nayif ayisyen yo."],
+["Lang ak literati","Ki otè ki ekri Dezafi, premye woman an kreyòl?",["Frankétienne","Jacques Roumain","René Depestre"],"Frankétienne te pibliye Dezafi an 1975."],
+["Pèsonalite istorik","Ki moun ki te prezidan Ayiti de 1818 a 1843?",["Jean-Pierre Boyer","Faustin Soulouque","Alexandre Pétion"],"Boyer te dirije Ayiti pandan 25 an."],
+["Kilti jeneral","An ki ane Ayiti te jwe nan Koup di Mond foutbòl?",["1974","1990","1998"],"Ayiti te jwe Koup di Mond la an 1974."],
+["Istwa Ayiti","An ki ane yo te pwoklame konstitisyon 1801 la ki te mete Toussaint Louverture gouvènè?",["1801","1805","1816"],"Konstitisyon 1801 la te pwoklame sou Sen-Domeng."],
+["Istwa Ayiti","An ki ane Boyer te reyini tout zile a anba menm gouvènman?",["1822","1844","1915"],"Reyinifikasyon an te fèt an 1822 epi Dominikani te separe an 1844."],
+["Istwa Ayiti","Ki dat Jean-Claude Duvalier te kite Ayiti?",["7 fevriye 1986","7 fevriye 1991","1ye janvye 1987"],"Duvalier te kite peyi a 7 fevriye 1986."],
+["Istwa Ayiti","An ki ane Toussaint Louverture te mouri?",["1803","1802","1804"],"Li te mouri 7 avril 1803 nan Fort de Joux."],
+["Jewografi","Ki depatman ki gen lavil Jeremi kòm kapital?",["Grandans","Sid","Nip"],"Jeremi se kapital depatman Grandans."],
+["Jewografi","Ki pi gwo lak natirèl Ayiti?",["Etan Somat","Lak Peligre","Lak Miragwàn"],"Etan Somat se pi gwo lak natirèl peyi a."],
+["Jewografi","Ki sifas apeprè Ayiti genyen an kilomèt kare?",["27 750","12 000","50 000"],"Ayiti gen apeprè 27 750 km²."],
+["Syans","Ki eleman chimik ki gen nimewo atomik 1?",["Idwojèn","Elyòm","Kabòn"],"Idwojèn se eleman ki pi senp la."],
+["Syans","Ki ògàn ki fabrike ensilin?",["Pankreyas","Fwa","Ren"],"Pankreyas la fabrike ensilin."],
+["Matematik","Ki valè apeprè nimewo pi (π)?",["3,14","2,71","1,62"],"π egal apeprè 3,14."],
+["Matematik","Konbyen fè 15 × 15?",["225","215","235"],"15 fwa 15 egal 225."],
+["Kilti ak tradisyon","Ki non yo bay yon gwoup moun ki travay ansanm pou ede youn lòt nan jaden?",["Konbit","Rara","Lakou"],"Konbit se travay kominotè kote moun ede youn lòt."],
+["Kilti ak tradisyon","Ki jan yo rele kou kote plizyè fanmi ayisyen viv ansanm nan yon kominote?",["Lakou","Konbit","Kanaval"],"Lakou se espas kote fanmi yo viv ansanm."],
+["Lang ak literati","Ki ekriven ayisyen ki ekri Compère Général Soleil?",["Jacques Stephen Alexis","Jacques Roumain","Frankétienne"],"Jacques Stephen Alexis te pibliye woman an an 1955."],
+["Pèsonalite istorik","Ki prezidan ayisyen yo te touye nan mwa jiyè 1915?",["Vilbrun Guillaume Sam","Antoine Simon","Nord Alexis"],"Vilbrun Guillaume Sam te mouri anvan okipasyon ameriken an."]]};
+var N={1:"Nivo 1 — Fasil",2:"Nivo 2 — Mwayen",3:"Nivo 3 — Difisil"},niv=1,qs,i,sc,tm,tid,lock,bal=75,hist=[],$=function(x){return document.getElementById(x)};
+function go(id){document.querySelectorAll(".screen").forEach(function(s){s.classList.remove("on")});$(id).classList.add("on");if(id==="home")$("nivoNow").textContent=N[niv];window.scrollTo(0,0)}
+function pick(n){niv=n;sel();go("home")}
+function sel(){for(var k=1;k<4;k++)$("n"+k).classList.toggle("sel",k===niv)}
+function sh(a){a=a.slice();for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1)),t=a[k];a[k]=a[j];a[j]=t}return a}
+function start(){qs=sh(Q[niv]).slice(0,10);i=0;sc=0;go("game");show()}
+function show(){var q=qs[i];lock=false;clearInterval(tid);tm=20;$("gN").textContent=N[niv]+" · "+(i+1)+"/"+qs.length;$("gC").textContent=q[0];$("gQ").textContent=q[1];$("gE").style.display="none";
+$("gO").innerHTML="";sh(q[2]).forEach(function(o){var b=document.createElement("button");b.className="btn opt";b.textContent=o;b.onclick=function(){ans(b,o)};$("gO").appendChild(b)});
+$("gB").style.transition="none";$("gB").style.width="100%";setTimeout(function(){$("gB").style.transition="width 20s linear";$("gB").style.width="0%"},50);
+$("gT").textContent="⏱ "+tm;tid=setInterval(function(){tm--;$("gT").textContent="⏱ "+tm;if(tm<=0)ans(null,null)},1000)}
+function ans(b,o){if(lock)return;lock=true;clearInterval(tid);var q=qs[i];$("gB").style.transition="none";
+if(o===q[2][0])sc++;document.querySelectorAll(".opt").forEach(function(x){x.disabled=true;if(x.textContent===q[2][0])x.classList.add("ok");else if(x===b)x.classList.add("no")});
+$("gX").textContent=(o===q[2][0]?"✅ Bon repons! ":o===null?"⏱ Tan fini. ":"❌ Pa vre. ")+q[3];$("gNext").textContent=i+1<qs.length?"Kesyon swivan":"Wè rezilta";$("gE").style.display="block";$("gE").scrollIntoView({behavior:"smooth",block:"nearest"})}
+function nxt(){i++;if(i<qs.length)show();else fin()}
+function fin(){$("eS").textContent=sc+" / "+qs.length;$("eR").textContent=sc;$("eP").textContent=sc*10;$("eM").textContent=sc>=qs.length-1?"Bravo! Ou konn Ayiti byen.":sc>=qs.length/2?"Byen jwe! Eseye ankò pou amelyore.":"Kontinye aprann, w ap rive!";go("end")}
+function wal(){$("wB").textContent=bal+" HTG";var ok=bal>=100;$("wM").textContent=ok?"Ou kapab mande retrè kounye a.":"Ou bezwen rive nan 100 goud pou w kapab fè retrè.";$("wBtn").classList.toggle("dis",!ok);
+$("wH").innerHTML=hist.length?hist.map(function(h){return '<div class="row"><span>'+h.s+' · '+h.n+'</span><b>'+h.a+' HTG<br><small>'+h.t+'</small></b></div>'}).join(""):"<p>Pa gen tranzaksyon ankò.</p>";go("lajan")}
+function swap(){bal=bal===75?125:75;wal()}
+function openRet(){if(bal<100)return;$("rE").style.display="none";go("ret")}
+function conf(){var a=parseInt($("rA").value,10),p=$("rP").value.replace(/[\s-]/g,"").replace(/^\+?509/,""),e="";
+if(!a||a<100)e="Montan minimòm lan se 100 goud.";else if(a>bal)e="Ou pa gen ase lajan disponib.";else if(!/^[34]\d{7}$/.test(p))e="Nimewo a dwe gen 8 chif (egz: 3412 3456).";
+if(e){$("rE").textContent=e;$("rE").style.display="block";return}
+bal-=a;hist.unshift({s:$("rS").value,n:p,a:a,t:"An atant (DEMO)"});alert("Demann retrè anrejistre an mòd DEMO. Pa gen lajan ki voye.");wal()}
+function reg(){var e="",p=$("aT").value.replace(/[\s-]/g,"").replace(/^\+?509/,"");
+if($("aN").value.trim().length<3)e="Antre non konplè ou.";else if(!/^[34]\d{7}$/.test(p))e="Nimewo telefòn nan dwe gen 8 chif (egz: 3412 3456).";
+else if(!/^\S+@\S+\.\S+$/.test($("aM").value))e="Imèl la pa bon.";else if($("aP").value.length<8)e="Modpas la dwe gen omwen 8 karaktè.";else if($("aP").value!==$("aC").value)e="De modpas yo pa menm.";
+if(e){$("aE").textContent=e;$("aE").style.display="block";return}
+alert("Fòm lan bon. Nan demo a, anyen pa sere. Kont reyèl la ap vini ak Supabase.");go("home")}
+sel();$("nivoNow").textContent=N[niv];
+</script></body></html>
